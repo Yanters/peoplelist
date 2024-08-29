@@ -3,6 +3,7 @@ import data from './data/data.json'
 import { useEffect, useState } from 'react'
 import { EmployeeI } from './interfaces'
 import { PositionContext } from './context/PositionContext'
+import { convertPythonNameToLabel } from './utils/convertPythonNameToLabel'
 
 export default function App() {
   const [employees, setEmployees] = useState<Record<string, EmployeeI[]>>({})
@@ -46,11 +47,7 @@ export default function App() {
             <PositionContext.Provider
               key={position}
               value={{
-                position: position
-                  .replace('_', ' ')
-                  .split(' ')
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(' '),
+                position: convertPythonNameToLabel(position),
                 employees: employees[position],
                 search,
               }}

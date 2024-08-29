@@ -1,4 +1,5 @@
 import { usePositionContext } from '../hooks/usePositionContext'
+import { convertPythonNameToLabel } from '../utils/convertPythonNameToLabel'
 import Table from './Table'
 
 const PositionTable = () => {
@@ -16,12 +17,7 @@ const PositionTable = () => {
         {
           name: 'position',
           label: 'Rola',
-          transform: (value) =>
-            (value as string)
-              .replace('_', ' ')
-              .split(' ')
-              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(' '),
+          transform: convertPythonNameToLabel,
         },
         { name: 'gender', label: 'Płeć' },
         { name: 'email', label: 'E-mail' },
